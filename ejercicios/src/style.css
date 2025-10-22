@@ -1,18 +1,54 @@
-.colorsSquares {
-    background-color: blue;
-    width: 10px;
-    height: 10px;
-    margin: 10px;
-
-
-.purple{
-    background-color: purple;
+body {
+    text-align: center;
+}
+#ex3 {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
-.yellow{
-    background-color: yellow;
+.square {
+  width: 150px;
+  aspect-ratio: 1;
+  border: 1px solid grey;
+  background-color: orange;
 }
-.green{
-    background-color: green;
+
+.blue {
+  background-color: #3b78d7;
 }
+
+.green {
+  background-color: darkseagreen;
+}
+
+.yellow {
+  background-color: goldenrod;
+}
+
+#ex4 {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #242424;
+  padding: 5px;
+  border-radius: 10px;
+  gap: 5px;
+  align-items: center;
+  color: white;
+}
+
+.movie-img {
+  border-radius: 10px;
+}
+
+.movie-title {
+  text-align: center;
+  font-size: 1.2rem;
 }
