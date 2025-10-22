@@ -55,7 +55,7 @@ createSquares(4, containerElementEx3);
 //4
 const movieObject = {
     title: "Gladiator",
-    description: "Rusell Crown se da de leches",
+    description: "Rusell Crown pelea",
     poster:
       "https://imgs.search.brave.com/9vXL0yeEvhsWvSMq4PDDwPxTQOidb98dgjfBvkYRhi8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bW92aXN0YXJwbHVz/LmVzL3JlY29ydGUv/bi9nYWxlcmlhL0Y0/MTg2MzY4",
   };
@@ -92,4 +92,51 @@ const movieObject = {
   }
   
   const movieContainerElement = document.querySelector('#ex4')
-  for (let i = 1; i <= 8; i++) movieContainerElement.appendChild(createMovieCard(movieObject))
+  for (let i = 1; i <= 1; i++) movieContainerElement.appendChild(createMovieCard(movieObject))
+
+  //6
+  const ex6 = document.querySelector("#ex6");
+  const div6 = document.createElement("div");
+  ex6.appendChild(div6);
+  div6.classList.add("container-mouse-move");
+  div6.textContent = "div 6 prueba";
+  div6.addEventListener("mousemove", (a) => {
+    console.log(("coordenada X: "+ a.clientX), ("coordenada Y: "+a.clientY))
+  })
+
+  //7
+  const ex7 = document.querySelector("#ex7");
+  const input = document.createElement("input");
+  input.setAttribute("id", "input-test")
+  input.addEventListener("input", () => {
+    console.log(input.value)
+  })
+  ex7.appendChild(input);
+
+  //8
+  const ex8 = document.querySelector("#ex8");
+  const but8 = document.createElement("button");
+  let clicks = 0
+  but8.classList.add("button")
+  but8.textContent = "Clicks: "+clicks
+  but8.addEventListener("click", (click) => {
+    if (click){
+      clicks++;
+      but8.textContent="Clicks: "+ clicks
+    }
+  
+  })
+  const resetButton = document.createElement("button");
+  resetButton.classList.add("button")
+  resetButton.textContent = "Resetear"
+  resetButton.addEventListener("click", (click) => {
+      but8.textContent="Clicks: "+ 0;
+      clicks = 0;
+    })
+  ex8.appendChild(but8)
+  ex8.appendChild(resetButton)
+
+//9
+
+
+  

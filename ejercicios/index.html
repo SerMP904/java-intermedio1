@@ -24,6 +24,30 @@
     <!-- Ejercicio 4-->
     <div id="ex4">
     </div>
+    <!-- Ejercicio 5-->
+    <div id="shadow1"></div>
+    <script>
+      let shadowHost = document.querySelector("#shadow1");
+      let shadowRoot = shadowHost.attachShadow({mode: 'open'});
+
+      const shadow = shadowRoot.innerHTML = `
+      <style>
+        p {
+          color: red;
+        }
+        </style> 
+        <p>Into shadow</p>`;
+      const shadowP = shadowRoot.querySelector('p');
+      shadowP.textContent = "Hola desde el Shadow DOM";
+      </script>
+    <!-- Ejercicio 6-->
+    <div id="ex6">
+    </div>
+    <div id="ex7">
+    </div>
+    <div id="ex8">
+    </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -95,3 +95,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.container-mouse-move{
+  border: 1px solid grey;
+  width: 300px;
+  height: 200px;
+}
