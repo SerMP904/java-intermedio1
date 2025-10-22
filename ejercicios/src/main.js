@@ -129,7 +129,7 @@ const movieObject = {
   const resetButton = document.createElement("button");
   resetButton.classList.add("button")
   resetButton.textContent = "Resetear"
-  resetButton.addEventListener("click", (click) => {
+  resetButton.addEventListener("click", () => {
       but8.textContent="Clicks: "+ 0;
       clicks = 0;
     })
@@ -137,6 +137,30 @@ const movieObject = {
   ex8.appendChild(resetButton)
 
 //9
+const ex9 = document.querySelector("#ex9");
+const input9 = document.createElement("input");
+input9.setAttribute("id", "input-ex9")
+input9.addEventListener("keydown", (a) => {
+  console.log(a.key)
+})
+ex9.appendChild(input9);
 
+//10
+const ex10 = document.querySelector("#ex10");
+const cuadrado = document.createElement("div");
+cuadrado.textContent="adios";
+cuadrado.setAttribute("id", "cuadradoPruebaEstilo");
+function transicionBasica(elemento, tiempoInicial){
+  let tiempoActual = performance.now();
+  let progreso = (tiempoActual - tiempoInicial) / 1000
+  if (progreso < 1){
+    elemento.style.transform = `translateX(${progreso * 100}px)`;
+    requestAnimationFrame(() => transicionBasica(elemento, tiempoInicial));
+  } else {
+  elemento.style.transform = "translateX(100px)";
+}
 
-  
+}
+const transicionCuadrado = transicionBasica(cuadrado, 1)
+ex10.appendChild(cuadrado);
+ex10.appendChild(transicionCuadrado);
