@@ -147,20 +147,62 @@ ex9.appendChild(input9);
 
 //10
 const ex10 = document.querySelector("#ex10");
-const cuadrado = document.createElement("div");
-cuadrado.textContent="adios";
+const cuadrado = document.createElement("button");
+cuadrado.textContent="Esto se mueve";
 cuadrado.setAttribute("id", "cuadradoPruebaEstilo");
+cuadrado.classList.add("button")
+
 function transicionBasica(elemento, tiempoInicial){
   let tiempoActual = performance.now();
   let progreso = (tiempoActual - tiempoInicial) / 1000
-  if (progreso < 1){
+  if (progreso < 3){
     elemento.style.transform = `translateX(${progreso * 100}px)`;
     requestAnimationFrame(() => transicionBasica(elemento, tiempoInicial));
   } else {
-  elemento.style.transform = "translateX(100px)";
+  elemento.style.transform = "translateX(0px)";
+}
 }
 
-}
-const transicionCuadrado = transicionBasica(cuadrado, 1)
+cuadrado.addEventListener("click", () =>{
+  requestAnimationFrame((tiempoInicial)=> transicionBasica(cuadrado, 1))
+})
 ex10.appendChild(cuadrado);
-ex10.appendChild(transicionCuadrado);
+
+//11
+
+//12
+
+//13
+const ex13 = document.querySelector("#ex13");
+const zonaParaDrop = document.createElement("div");
+zonaParaDrop.className = "demo-drag";
+
+const elementoDragable = document.createElement("div");
+elementoDragable.className = "demo-drop";
+elementoDragable.textContent = "datos bancarios";
+elementoDragable.draggable = true;
+
+ex13.appendChild(zonaParaDrop);
+ex13.appendChild(elementoDragable);
+
+const datosDelBanco = {numeroCuenta: 78771818791, cvc: 123, fechaCaducidad: "29 Febrero de 2028"};
+
+elementoDragable.addEventListener("dragstart", (event) => {
+  event.dataTransfer.setData("sendData", JSON.stringify(datosDelBanco))
+  console.log("Lanzado dragstart")
+})
+
+zonaParaDrop.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  console.log("no hace nada")
+})
+
+zonaParaDrop.addEventListener("drop", (event) => {
+  event.preventDefault();
+  const datosParaRecibir = JSON.parse(event.dataTransfer.getData("sendData"));
+  zonaParaDrop.textContent = ""; 
+  Object.entries(datosParaRecibir).forEach((element) =>{
+  zonaParaDrop.textContent += `${element[0]}: ${element[1]}`;
+  
+})
+})
