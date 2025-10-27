@@ -1,5 +1,6 @@
 import './style.css'
 //1
+const app = document.querySelector("#app")
 const pEx1 = document.getElementById("p1")
 const divEx1 = document.getElementById("ex1")
 console.log(pEx1);
@@ -206,3 +207,135 @@ zonaParaDrop.addEventListener("drop", (event) => {
   
 })
 })
+//Formulario
+//17 y 18
+const formu = document.querySelector("#miFormu")
+formu.textContent = "Formulario"
+
+const nameLabel = document.createElement("div")
+const nameInput = document.createElement("input")
+const edadLabel = document.createElement("div")
+const edadInput = document.createElement("input")
+const emailLabel = document.createElement("div")
+const emailInput = document.createElement("input")
+const submit = document.createElement("button")
+
+nameLabel.setAttribute("for", "nombre")
+nameLabel.textContent = "nombre"
+
+nameInput.setAttribute("type", "text")
+nameInput.setAttribute("id", "nombre")
+nameInput.setAttribute("name", "nombre")
+nameInput.textContent = "nombre"
+
+emailLabel.setAttribute("id", "correo")
+emailLabel.textContent = "correo"
+
+emailInput.setAttribute("type", "email")
+emailInput.setAttribute("id", "nombre")
+emailInput.setAttribute("correo", "numero")
+emailInput.textContent = "correo"
+
+edadLabel.setAttribute("id", "edad")
+edadLabel.textContent = "edad"
+
+edadInput.setAttribute("type", "number")
+edadInput.setAttribute("id", "numero")
+edadInput.setAttribute("edad", "numero")
+edadInput.textContent = "edad"
+
+submit.setAttribute("type", "submit");
+submit.textContent = "submit"
+
+formu.appendChild(nameLabel);
+formu.appendChild(nameInput);
+formu.appendChild(emailLabel);
+formu.appendChild(emailInput);
+formu.appendChild(edadLabel);
+formu.appendChild(edadInput);
+formu.appendChild(submit);
+
+
+
+//Ejercicios Fetch
+//19
+fetch('https://jsonplaceholder.typicode.com/users')
+ .then(response => response.json())
+ .then(datos => {
+  for (let i=0; i<datos.length; i++){
+    console.log(datos[i].name)
+  }
+}, )
+
+//20
+/*fetch('https://jsonplaceholder.typicode.com/user')
+ .then(response => {
+  if (!response.ok){
+    throw new Error(`HTTPS ${response.status}`)
+  }
+  return response.json();
+ })*/
+
+//21
+const url = 'https://jsonplaceholder.typicode.com/users';
+const datosPersona = {
+  name: "Fernando",
+  edad: 88,
+}
+fetch(url, { 
+  method: "POST",
+  headers: {
+    'Content-type': 'application/json'
+  },
+  body: JSON.stringify(datosPersona)
+})
+ .then(response => response.json())
+ .then(data => console.log(data))
+ .catch(error => console.error('Error:', error))
+
+ const datosPersona2 = {
+  name: "Juana",
+  edad: 89,
+}
+
+async function postData() { 
+  try {
+    const resp = await fetch(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+    title: ".",
+    body: "adfaklsfklj",
+    userId: 1
+  })
+});
+if (!resp.ok) throw new Error("Error");
+const data = await resp.json();
+} catch(error){
+  console.error(error.message);
+}
+}
+
+export async function fetchAsincrono(url){
+  try {
+    const resp = await fetch(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+    title: ".",
+    body: "adfaklsfklj",
+    userId: 1
+  })
+});
+if (!resp.ok) throw new Error("Error");
+const data = await resp.json();
+} catch(error){
+  console.error(error.message);
+}
+}
