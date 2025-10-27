@@ -55,7 +55,7 @@ createSquares(4, containerElementEx3);
 //4
 const movieObject = {
     title: "Gladiator",
-    description: "Rusell Crown se da de leches",
+    description: "Rusell Crown pelea",
     poster:
       "https://imgs.search.brave.com/9vXL0yeEvhsWvSMq4PDDwPxTQOidb98dgjfBvkYRhi8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/bW92aXN0YXJwbHVz/LmVzL3JlY29ydGUv/bi9nYWxlcmlhL0Y0/MTg2MzY4",
   };
@@ -92,8 +92,118 @@ const movieObject = {
   }
   
   const movieContainerElement = document.querySelector('#ex4')
-  for (let i = 1; i <= 8; i++) movieContainerElement.appendChild(createMovieCard(movieObject))
-  
+  for (let i = 1; i <= 1; i++) movieContainerElement.appendChild(createMovieCard(movieObject))
 
-//5
+  //6
+  const ex6 = document.querySelector("#ex6");
+  const div6 = document.createElement("div");
+  ex6.appendChild(div6);
+  div6.classList.add("container-mouse-move");
+  div6.textContent = "div 6 prueba";
+  div6.addEventListener("mousemove", (a) => {
+    console.log(("coordenada X: "+ a.clientX), ("coordenada Y: "+a.clientY))
+  })
+
+  //7
+  const ex7 = document.querySelector("#ex7");
+  const input = document.createElement("input");
+  input.setAttribute("id", "input-test")
+  input.addEventListener("input", () => {
+    console.log(input.value)
+  })
+  ex7.appendChild(input);
+
+  //8
+  const ex8 = document.querySelector("#ex8");
+  const but8 = document.createElement("button");
+  let clicks = 0
+  but8.classList.add("button")
+  but8.textContent = "Clicks: "+clicks
+  but8.addEventListener("click", (click) => {
+    if (click){
+      clicks++;
+      but8.textContent="Clicks: "+ clicks
+    }
+  
+  })
+  const resetButton = document.createElement("button");
+  resetButton.classList.add("button")
+  resetButton.textContent = "Resetear"
+  resetButton.addEventListener("click", () => {
+      but8.textContent="Clicks: "+ 0;
+      clicks = 0;
+    })
+  ex8.appendChild(but8)
+  ex8.appendChild(resetButton)
+
+//9
+const ex9 = document.querySelector("#ex9");
+const input9 = document.createElement("input");
+input9.setAttribute("id", "input-ex9")
+input9.addEventListener("keydown", (a) => {
+  console.log(a.key)
+})
+ex9.appendChild(input9);
+
+//10
+const ex10 = document.querySelector("#ex10");
+const cuadrado = document.createElement("button");
+cuadrado.textContent="Esto se mueve";
+cuadrado.setAttribute("id", "cuadradoPruebaEstilo");
+cuadrado.classList.add("button")
+
+function transicionBasica(elemento, tiempoInicial){
+  let tiempoActual = performance.now();
+  let progreso = (tiempoActual - tiempoInicial) / 1000
+  if (progreso < 3){
+    elemento.style.transform = `translateX(${progreso * 100}px)`;
+    requestAnimationFrame(() => transicionBasica(elemento, tiempoInicial));
+  } else {
+  elemento.style.transform = "translateX(0px)";
+}
+}
+
+cuadrado.addEventListener("click", () =>{
+  requestAnimationFrame((tiempoInicial)=> transicionBasica(cuadrado, 1))
+})
+ex10.appendChild(cuadrado);
+
+//11
+
+//12
+
+//13
+const ex13 = document.querySelector("#ex13");
+const zonaParaDrop = document.createElement("div");
+zonaParaDrop.className = "demo-drag";
+
+const elementoDragable = document.createElement("div");
+elementoDragable.className = "demo-drop";
+elementoDragable.textContent = "datos bancarios";
+elementoDragable.draggable = true;
+
+ex13.appendChild(zonaParaDrop);
+ex13.appendChild(elementoDragable);
+
+const datosDelBanco = {numeroCuenta: 78771818791, cvc: 123, fechaCaducidad: "29 Febrero de 2028"};
+
+elementoDragable.addEventListener("dragstart", (event) => {
+  event.dataTransfer.setData("sendData", JSON.stringify(datosDelBanco))
+  console.log("Lanzado dragstart")
+})
+
+zonaParaDrop.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  console.log("no hace nada")
+})
+
+zonaParaDrop.addEventListener("drop", (event) => {
+  event.preventDefault();
+  const datosParaRecibir = JSON.parse(event.dataTransfer.getData("sendData"));
+  zonaParaDrop.textContent = ""; 
+  Object.entries(datosParaRecibir).forEach((element) =>{
+  zonaParaDrop.textContent += `${element[0]}: ${element[1]}`;
+  
+})
+})
 
