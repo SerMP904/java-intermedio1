@@ -121,3 +121,36 @@ button:focus-visible {
   width: 500px;
   height: 300px;
 }
+
+div {
+  margin-top: 25px;
+  
+}
+
+#ex4 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.rectangulo {
+  width: 300px;
+  height: 100px;
+}
+
+.contador {
+  color: green;
+  padding: 15px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.error-info {
+  color: tomato;
+  font-style: italic;
+  padding: 5px;
+}
+
+.blue {
+  background-color: #3b78d7;
+}

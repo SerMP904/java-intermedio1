@@ -10,21 +10,21 @@ const h2Ex1 = document.querySelectorAll('#innecesario')
 console.log(h1Ex1)
 console.log(h2Ex1)
 console.log(divEx1)
+app.appendChild(divEx1)
 
 //2
-const ex2 = document.querySelector("#ex2");
-const divEx2 = document.createElement("div");
+const ex2 = document.createElement("div");
 const nuevoPEx2 = document.createElement("p");
-divEx2.appendChild(nuevoPEx2);
+ex2.appendChild(nuevoPEx2);
 nuevoPEx2.textContent = 'Lore ipsum...';
-ex2.appendChild(divEx2);
 const butEx2 = document.createElement("input");
 butEx2.setAttribute("button", "button2");
 ex2.appendChild(butEx2);
 console.log("ods funciona")
 
 //3
-const containerElementEx3 = document.querySelector('#ex3');
+const containerElementEx3 = document.createElement('div');
+containerElementEx3.setAttribute("id", "#ex3")
 
 const colorsForSquares = {
   blue: "blue",
@@ -92,21 +92,22 @@ const movieObject = {
     return movieCardElement;
   }
   
-  const movieContainerElement = document.querySelector('#ex4')
-  for (let i = 1; i <= 1; i++) movieContainerElement.appendChild(createMovieCard(movieObject))
+  const ex4 = document.createElement('div');
+ex4.setAttribute("id", "#ex4")
+  for (let i = 1; i <= 1; i++) ex4.appendChild(createMovieCard(movieObject))
 
   //6
-  const ex6 = document.querySelector("#ex6");
-  const div6 = document.createElement("div");
-  ex6.appendChild(div6);
-  div6.classList.add("container-mouse-move");
-  div6.textContent = "div 6 prueba";
-  div6.addEventListener("mousemove", (a) => {
+  const ex6 = document.createElement('div');
+ex6.setAttribute("id", "#ex6")
+  ex6.classList.add("container-mouse-move");
+  ex6.textContent = "div 6 prueba";
+ ex6.addEventListener("mousemove", (a) => {
     console.log(("coordenada X: "+ a.clientX), ("coordenada Y: "+a.clientY))
   })
 
   //7
-  const ex7 = document.querySelector("#ex7");
+  const ex7 = document.createElement('div');
+ex7.setAttribute("id", "#ex7")
   const input = document.createElement("input");
   input.setAttribute("id", "input-test")
   input.addEventListener("input", () => {
@@ -115,7 +116,8 @@ const movieObject = {
   ex7.appendChild(input);
 
   //8
-  const ex8 = document.querySelector("#ex8");
+  const ex8 = document.createElement('div');
+ex8.setAttribute("id", "#ex8")
   const but8 = document.createElement("button");
   let clicks = 0
   but8.classList.add("button")
@@ -170,8 +172,56 @@ cuadrado.addEventListener("click", () =>{
 ex10.appendChild(cuadrado);
 
 //11
+const elementoDiv = document.createElement("div");
+const ex11 = document.querySelector("#ex11")
+elementoDiv.className = "blue rectangulo";
+ex11.appendChild(elementoDiv);
+
+const buttonTransicion = document.createElement("button");
+buttonTransicion.setAttribute("id", "animate-rect");
+buttonTransicion.textContent = "Animar el rectangulo";
+ex11.appendChild(buttonTransicion);
+
+let azul = true;
+
+function iniciarTransicion() {
+  elementoDiv.style.transition = "background-color 0.5s, transform 0.5s";
+  elementoDiv.style.backgroundColor = azul ? "blue" : "red";
+  azul = !azul; // alternamos el color
+}
+
+buttonTransicion.addEventListener("click", iniciarTransicion);
 
 //12
+const elementoDiv2 = document.createElement("div");
+const ex12 = document.querySelector("#ex12")
+elementoDiv2.className = "blue rectangulo";
+ex12.appendChild(elementoDiv2);
+
+const buttonRotar = document.createElement("button");
+buttonRotar.setAttribute("id", "rotate");
+buttonRotar.textContent = "Rotar 360º";
+ex12.appendChild(buttonRotar);
+
+function rotarSuavemente(elemento, tiempoInicio) {
+  const tiempoActual = performance.now();
+  const progreso = (tiempoActual - tiempoInicio) / 1000; // segundos
+
+  if (progreso < 1) {
+    // Rota de 0° a 360° durante 1 segundo
+    elemento.style.transform = `rotate(${progreso * 360}deg)`;
+    requestAnimationFrame(() => rotarSuavemente(elemento, tiempoInicio));
+  } else {
+    // Al llegar al final, dejamos el ángulo fijo en 360°
+    elemento.style.transform = "rotate(360deg)";
+  }
+}
+
+buttonRotar.addEventListener("click", () => {
+  requestAnimationFrame((tiempoInicio) =>
+    rotarSuavemente(elementoDiv2, tiempoInicio)
+  );
+});
 
 //13
 const ex13 = document.querySelector("#ex13");
@@ -207,6 +257,33 @@ zonaParaDrop.addEventListener("drop", (event) => {
   
 })
 })
+
+//14
+//Este ejercicio tan solo muestra variables
+
+
+//15
+const divEx15 = document.createElement("div");
+divEx15.className = "contenedor-ejercicio";
+
+const buttonMostrarMensaje = document.createElement("button");
+buttonMostrarMensaje.setAttribute("id", "btn-show-msg");
+buttonMostrarMensaje.textContent = "Mostrar mensaje tras 3 segundos";
+
+const contenedorMensaje = document.createElement("p");
+contenedorMensaje.textContent = "...Esperando mensaje";
+
+divEx15.appendChild(buttonMostrarMensaje);
+divEx15.appendChild(contenedorMensaje);
+
+// Evento click del botón
+buttonMostrarMensaje.addEventListener("click", () => {
+  // Espera 3 segundos (3000 milisegundos)
+  setTimeout(() => {
+    contenedorMensaje.textContent = "¡Hola! Han pasado 3 segundos!";
+  }, 3000);
+});
+
 //Formulario
 //17 y 18
 const formu = document.querySelector("#miFormu")
@@ -227,6 +304,7 @@ nameInput.setAttribute("type", "text")
 nameInput.setAttribute("id", "nombre")
 nameInput.setAttribute("name", "nombre")
 nameInput.textContent = "nombre"
+nameInput.setAttribute("placeholder", "nombre")
 
 emailLabel.setAttribute("id", "correo")
 emailLabel.textContent = "correo"
@@ -255,7 +333,28 @@ formu.appendChild(edadLabel);
 formu.appendChild(edadInput);
 formu.appendChild(submit);
 
+const formulario = document.getElementById("miFormu")
+formulario.addEventListener("submit", function(e){
+  e.preventDefault();
 
+  const nombre = document.getElementById("nombre").value;
+  const email = document.getElementById("email").value;
+  if (nombre.trim() === ""){
+    alert("El nombre es obligatorio");
+    return;
+  }
+
+  if (!validarEmail(email)){
+    alert("El correo no es válido");
+    return;
+  }
+  console.log("Formulario listo para enviar");
+})
+
+function validarEmail(correo){
+  const expresion = /^[^\s@]+@[^\s@]+\.[*\s@]+$/;
+  return expresion.test(correo);
+}
 
 //Ejercicios Fetch
 //19
@@ -339,3 +438,107 @@ const data = await resp.json();
   console.error(error.message);
 }
 }
+
+//25
+const ex25 = document.createElement("div");
+ex25.setAttribute("id","ex25");
+ex25.textContent= "Ejercicio25";
+
+const nameInput25 = document.createElement("input");
+nameInput25.setAttribute("type", "text");
+nameInput25.setAttribute("placeholder", "nombre");
+
+const guardar25 = document.createElement("button");
+guardar25.textContent= "Guardar Local";
+
+const pElement25 = document.createElement("p");
+if(typeof localStorage !== undefined){
+  pElement25.textContent = localStorage.getItem("nombreHash")
+  nameInput25.placeholder = localStorage.getItem("nombreHash")
+}
+
+ex25.appendChild(nameInput25);
+ex25.appendChild(guardar25);
+ex25.appendChild(pElement25);
+
+guardar25.addEventListener("click", () =>{
+  localStorage.setItem("nombreHash", nameInput25.value)
+})
+
+//26
+const ex26 = document.createElement("div");
+ex26.setAttribute("id","ex26");
+ex26.textContent= "Ejercicio26";
+
+const nameInput26 = document.createElement("input");
+nameInput26.setAttribute("type", "text");
+nameInput26.setAttribute("placeholder", "nombre");
+
+
+const guardar26 = document.createElement("button");
+guardar26.textContent= "Guardar Session";
+
+const pElement26 = document.createElement("p");
+if(typeof sessionStorage !== undefined){
+  pElement26.textContent = sessionStorage.getItem("nombreHash")
+  nameInput26.placeholder = sessionStorage.getItem("nombreHash")
+}
+
+ex26.appendChild(nameInput26);
+ex26.appendChild(guardar26);
+ex26.appendChild(pElement26);
+
+guardar26.addEventListener("click", () =>{
+  sessionStorage.setItem("nombreHash", nameInput26.value)
+})
+
+//27
+const ex27 = document.createElement("div")
+ex27.setAttribute("id","ex27");
+ex27.textContent= "Ejercicio27";
+
+fetch(urlMovies, {
+
+})
+
+
+
+//prueba
+/*
+fetch(url,{
+  method: "POST",
+  headers: {
+    "content-type" = "application/json",
+    "accept": "application/json",
+    "authorization": "Bearer token_aqui"
+  }
+  body: JSON.stringify(persona)
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.log("error", error))
+*/ 
+
+
+
+
+//AQUI UNA SECCIÓN CON APPENDCHILDS
+app.appendChild(divEx1);
+app.appendChild(ex2);
+app.appendChild(containerElementEx3);
+app.appendChild(ex4);
+
+app.appendChild(ex6);
+app.appendChild(ex7);
+app.appendChild(ex8);
+app.appendChild(ex9);
+app.appendChild(ex10);
+app.appendChild(ex11);
+app.appendChild(ex12);
+app.appendChild(ex13);
+app.appendChild(divEx15);
+app.appendChild(formu);
+app.appendChild(ex25)
+app.appendChild(ex26)
+app.appendChild(ex27)
+
