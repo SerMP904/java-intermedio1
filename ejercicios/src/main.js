@@ -98,7 +98,7 @@ ex4.setAttribute("id", "#ex4")
 
   //6
   const ex6 = document.createElement('div');
-ex6.setAttribute("id", "#ex6")
+  ex6.setAttribute("id", "#ex6")
   ex6.classList.add("container-mouse-move");
   ex6.textContent = "div 6 prueba";
  ex6.addEventListener("mousemove", (a) => {
@@ -162,7 +162,7 @@ function transicionBasica(elemento, tiempoInicial){
     elemento.style.transform = `translateX(${progreso * 100}px)`;
     requestAnimationFrame(() => transicionBasica(elemento, tiempoInicial));
   } else {
-  elemento.style.transform = "translateX(0px)";
+  elemento.style.transform = "translateX(100px)";
 }
 }
 
@@ -493,13 +493,15 @@ guardar26.addEventListener("click", () =>{
 })
 
 //27
+/*
 const ex27 = document.createElement("div")
 ex27.setAttribute("id","ex27");
 ex27.textContent= "Ejercicio27";
 
 fetch(urlMovies, {
 
-})
+})*/
+
 
 
 
