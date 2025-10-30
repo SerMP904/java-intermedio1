@@ -1,11 +1,36 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
 body {
     text-align: center;
 }
 #ex3 {
   display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 .square {
@@ -51,4 +76,63 @@ body {
 .movie-title {
   text-align: center;
   font-size: 1.2rem;
+}
+
+.container-mouse-move{
+  border: 1px solid grey;
+  width: 300px;
+  height: 200px;
+}
+
+#cuadradoPruebaEstilo{
+  border: 1px solid grey;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  text-align: center;
+}
+
+.demo-drop{
+  border: 1px solid grey;
+  width: 100px;
+  height: 100px;
+}
+
+.demo-drag{
+  border: 1px solid yellow;
+  width: 500px;
+  height: 300px;
+}
+
+div {
+  margin-top: 25px;
+  
+}
+
+#ex4 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.rectangulo {
+  width: 300px;
+  height: 100px;
+}
+
+.contador {
+  color: green;
+  padding: 15px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.error-info {
+  color: tomato;
+  font-style: italic;
+  padding: 5px;
+}
+
+.blue {
+  background-color: #3b78d7;
 }
