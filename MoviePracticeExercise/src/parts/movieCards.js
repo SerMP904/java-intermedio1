@@ -17,7 +17,5 @@ export function createMovieCard(movie) {
     movieCard.appendChild(movieTitle);
     movieCard.appendChild(movieRating);
     console.log("movie cards")
-    return movieCard;
-
-    
+    return movieCard;    
 }
