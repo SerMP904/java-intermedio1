@@ -1,10 +1,22 @@
+
+#app {
+  background-color: pink;
+}
+
 .web-title{
   font-size: 20px;
   padding: 5px;
 }
-
-.movie-cont{
-  background-color: blueviolet;
+.movieDisplay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.movies-cont {
+  max-width: 1240px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 20px, auto;
 }
 
 button{
@@ -22,17 +34,11 @@ button{
 }
 
 .movieImg{
-
   border: 4px solid black;
 }
 
 .buttonPelis {
   border: 2px solid red;
-  border-radius:15%;
-}
-
-.buttonPelis1 {
-  border: 2px solid blue;
-  border-radius:15%;
+  border-radius:15px;
 }
 
